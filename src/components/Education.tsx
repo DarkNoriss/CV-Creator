@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-export const Education: FC = (): JSX.Element => {
+export const Education: FC = () => {
   const addEducation = () => {
     return (
       <>

@@ -4,7 +4,7 @@ interface SectionListProps {
   sections: ReactElement[];
 }
 
-export const SectionList = ({ sections }: SectionListProps): JSX.Element => {
+export const SectionList = ({ sections }: SectionListProps) => {
   return (
     <>
       {sections.map((section, index) => (
