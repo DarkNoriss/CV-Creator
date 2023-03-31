@@ -1,4 +1,6 @@
-export const Education = () => {
+import { FC } from 'react';
+
+export const Education: FC = (): JSX.Element => {
   const addEducation = () => {
     return (
       <>

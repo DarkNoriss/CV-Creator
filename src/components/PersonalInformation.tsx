@@ -1,4 +1,6 @@
-export const PersonalInformation = () => {
+import { FC } from 'react';
+
+export const PersonalInformation: FC = (): JSX.Element => {
   return (
     <>
       <h3>Personal Information</h3>

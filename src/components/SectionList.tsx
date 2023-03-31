@@ -1,9 +1,10 @@
-import React, { ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 
 interface SectionListProps {
   sections: ReactElement[];
 }
-export const SectionList = ({ sections }: SectionListProps) => {
+
+export const SectionList = ({ sections }: SectionListProps): JSX.Element => {
   return (
     <>
       {sections.map((section, index) => (
