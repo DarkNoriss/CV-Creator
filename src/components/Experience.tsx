@@ -1,20 +1,32 @@
 import { ChangeEvent, FC, useState } from 'react';
 
-export const Experience: FC = (): JSX.Element => {
-  const [experience, setExperience] = useState<{ [key: string]: string | undefined }[]>([]);
+export const Experience: FC = () => {
+  interface Experience {
+    position: string;
+    company: string;
+    city: string;
+    from: string;
+    to: string;
+  }
 
-  // useEffect(() => console.log(experience));
+  const [experience, setExperience] = useState<Experience[]>([]);
 
   const handleChange = (event: ChangeEvent, index: number) => {
+    const name = (event.target as HTMLInputElement).name;
     const value = (event.target as HTMLInputElement).value;
-    setExperience([
-      ...experience.slice(0, index),
-      {
-        ...experience[index],
-        position: value,
-      },
-      ...experience.slice(index + 1),
-    ]);
+
+    const updatedExperience = experience.map((item, i) => {
+      if (i === index) {
+        return {
+          ...item,
+          [name]: value,
+        };
+      }
+      return item;
+    });
+
+    setExperience(updatedExperience);
+    console.log(experience);
   };
 
   const addExperience = () => {
@@ -38,31 +50,31 @@ export const Experience: FC = (): JSX.Element => {
     return (
       <div key={index}>
         <input
-          name={`position${index}`}
+          name="position"
           placeholder="Position"
           value={experience[index].position}
           onChange={(e) => handleChange(e, index)}
         ></input>
         <input
-          name={`company${index}`}
+          name="company"
           placeholder="Company"
           value={experience[index].company}
           onChange={(e) => handleChange(e, index)}
         ></input>
         <input
-          name={`city${index}`}
+          name="city"
           placeholder="City"
           value={experience[index].city}
           onChange={(e) => handleChange(e, index)}
         ></input>
         <input
-          name={`from${index}`}
+          name="from"
           placeholder="From"
           value={experience[index].from}
           onChange={(e) => handleChange(e, index)}
         ></input>
         <input
-          name={`to${index}`}
+          name="to"
           placeholder="To"
           value={experience[index].to}
           onChange={(e) => handleChange(e, index)}
@@ -72,20 +84,7 @@ export const Experience: FC = (): JSX.Element => {
     );
   };
 
-  // const experienceTemp = (index: number) => {
-  //   return (
-  //     <div key={index}>
-  //       <input name={`position${index}`} placeholder="Position"></input>
-  //       <input name={`company${index}`} placeholder="Company"></input>
-  //       <input name={`city${index}`} placeholder="City"></input>
-  //       <input name={`from${index}`} placeholder="From"></input>
-  //       <input name={`to${index}`} placeholder="To"></input>
-  //       <button onClick={() => removeExperience(index)}>Delete</button>
-  //     </div>
-  //   );
-  // };
-
-  const handleAddExperience = () => {};
+  // const handleAddExperience = () => {};
 
   return (
     <>
