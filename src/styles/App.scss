@@ -1,0 +1,90 @@
+@import '../styles/variable.scss';
+
+.app {
+  min-height: calc(100vh - 72px - 27px - 40px);
+  display: flex;
+  justify-content: space-evenly;
+  gap: 64px;
+  max-width: 1800px;
+  padding: 20px 128px;
+  margin: auto;
+
+  & .section-list {
+    width: 793.7px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 32px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+    & section {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      & h3 {
+        margin: 0;
+        padding: 4px;
+      }
+
+      & div {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        & input,
+        textarea {
+          border-radius: 5px;
+          border: 1px solid transparent;
+          padding: 4px;
+        }
+
+        & textarea {
+          height: 80px;
+          font-family: inherit;
+          resize: none;
+        }
+      }
+    }
+  }
+
+  &-preview {
+    min-width: 793.7px;
+    height: 1122.51px;
+    padding: 32px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+  & .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    & .generate {
+      background-color: green;
+    }
+
+    & .load {
+      background-color: yellow;
+    }
+
+    & .delete {
+      background-color: red;
+    }
+  }
+
+  & button {
+    padding: 8px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 1700px) {
+  .app {
+    flex-direction: column;
+    align-items: center;
+  }
+}
