@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { Header } from './Header';
 import { SectionList } from './SectionList';
 import { Footer } from './Footer';
@@ -7,7 +7,7 @@ import { PersonalInformation } from './PersonalInformation';
 import { Experience } from './Experience';
 import { Education } from './Education';
 
-export const App = () => {
+export const App: FC = (): JSX.Element => {
   const [sections] = useState([<PersonalInformation />, <Experience />, <Education />]);
 
   return (
