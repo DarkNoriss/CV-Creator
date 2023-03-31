@@ -5,7 +5,7 @@ export const Footer = () => {
   return (
     <footer className="footer">
       <a className="footer-link">
-        <img src="/icons/github.svg"></img>
+        <img src="/github.svg"></img>
         <p>DarkNoriss</p>
       </a>
     </footer>
