@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { PATHICONS } from '../constants';
 import '../styles/footer.scss';
 
-export const Footer = () => {
+export const Footer: FC = () => {
   return (
     <footer className="footer">
       <a className="footer-link" href="https://github.com/DarkNoriss" target="__blank">

@@ -1,3 +1,3 @@
 import { FC } from 'react';
 
-export const SectionButtons = () => {};
+export const SectionButtons: FC = () => {};

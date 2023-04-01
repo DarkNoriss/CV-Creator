@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useState } from 'react';
+import { useState } from 'react';
 import { SectionTypes } from '../interfaces/interfaces';
 import { PersonalInformation } from './PersonalInformation';
 import { Experience } from './Experience';
