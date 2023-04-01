@@ -18,12 +18,12 @@ export const Education: FC = () => {
   const handleAddEducation = () => {};
 
   return (
-    <>
+    <section>
       <h3>Education</h3>
       <div>
         {addEducation()}
         <button>Add</button>
       </div>
-    </>
+    </section>
   );
 };
