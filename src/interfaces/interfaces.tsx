@@ -1,5 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
-
 export interface ExperienceTypes {
   position: string;
   company: string;

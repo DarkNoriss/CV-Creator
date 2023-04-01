@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { ExperienceTypes, Props } from '../interfaces/interfaces';
 import { useUpdateEffect } from '../utils/useUpdateEffect';
 
