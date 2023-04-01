@@ -1,102 +1,58 @@
 import { ChangeEvent, FC, useState } from 'react';
+import { ExperienceTypes, Props } from '../interfaces/interfaces';
+import { useUpdateEffect } from '../utils/useUpdateEffect';
 
-export const Experience: FC = () => {
-  interface Experience {
-    position: string;
-    company: string;
-    city: string;
-    from: string;
-    to: string;
-  }
+export const Experience = ({ updateData }: Props) => {
+  const [exp, setExp] = useState<ExperienceTypes[]>(() => []);
 
-  const [experience, setExperience] = useState<Experience[]>([]);
+  useUpdateEffect(() => {
+    updateData(exp, 'experience');
+  }, [exp]);
 
-  const handleChange = (event: ChangeEvent, index: number) => {
-    const name = (event.target as HTMLInputElement).name;
-    const value = (event.target as HTMLInputElement).value;
+  const handleChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
+    const { name, value } = event.target;
 
-    const updatedExperience = experience.map((item, i) => {
-      if (i === index) {
-        return {
-          ...item,
-          [name]: value,
-        };
-      }
-      return item;
-    });
+    const updatedExp = exp.map((item, i) => (i !== index ? item : { ...item, [name]: value }));
 
-    setExperience(updatedExperience);
-    console.log(experience);
+    setExp(updatedExp);
   };
 
-  const addExperience = () => {
-    setExperience([
-      ...experience,
-      {
-        position: '',
-        company: '',
-        city: '',
-        from: '',
-        to: '',
-      },
-    ]);
+  const addExp = () => {
+    setExp([...exp, { position: '', company: '', city: '', from: '', to: '' }]);
   };
 
-  const removeExperience = (index: number) => {
-    setExperience(experience.filter((_, i) => i !== index));
+  const removeExp = (index: number) => {
+    setExp(exp.filter((_, i) => i !== index));
   };
 
-  const experienceTemp = (index: number) => {
+  const renderExp = (index: number) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      handleChange(e, index);
+    };
+
     return (
       <div key={index}>
-        <input
-          name="position"
-          placeholder="Position"
-          value={experience[index].position}
-          onChange={(e) => handleChange(e, index)}
-        ></input>
-        <input
-          name="company"
-          placeholder="Company"
-          value={experience[index].company}
-          onChange={(e) => handleChange(e, index)}
-        ></input>
-        <input
-          name="city"
-          placeholder="City"
-          value={experience[index].city}
-          onChange={(e) => handleChange(e, index)}
-        ></input>
-        <input
-          name="from"
-          placeholder="From"
-          value={experience[index].from}
-          onChange={(e) => handleChange(e, index)}
-        ></input>
-        <input
-          name="to"
-          placeholder="To"
-          value={experience[index].to}
-          onChange={(e) => handleChange(e, index)}
-        ></input>
-        <button onClick={() => removeExperience(index)}>Delete</button>
+        {['position', 'company', 'city', 'from', 'to'].map((name) => (
+          <input
+            key={name}
+            name={name}
+            placeholder={name[0].toUpperCase() + name.slice(1)}
+            value={exp[index][name]}
+            onChange={handleInputChange}
+          />
+        ))}
+        <button onClick={() => removeExp(index)}>Delete</button>
       </div>
     );
   };
 
-  // const handleAddExperience = () => {};
-
   return (
-    <>
+    <section>
       <h3>Experience</h3>
       <div>
-        <>
-          {experience.length > 0
-            ? experience.map((__, index) => experienceTemp(index))
-            : console.log('No experience added yet')}
-          <button onClick={addExperience}>Add</button>
-        </>
+        {exp.length !== 0 && exp.map((_, index) => renderExp(index))}
+        <button onClick={addExp}>Add</button>
       </div>
-    </>
+    </section>
   );
 };
