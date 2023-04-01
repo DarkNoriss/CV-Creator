@@ -29,16 +29,15 @@ export const createInput = (
     return (
       <div key={index}>
         {fieldNames.map((name: any) => {
-          const nameFirst = name.split(/(?=[A-Z])/)[0];
-          const nameFormatted = nameFirst + ' ' + name.slice(nameFirst.length);
-          const nameLower = nameFormatted.toLowerCase();
-          const nameUpper = nameLower[0].toUpperCase() + nameLower.slice(1);
+          const nameSplit = name.split(/(?=[A-Z])/)[0];
+          const nameBetween = nameSplit + ' ' + name.slice(nameSplit.length);
+          const nameFormatted = nameBetween[0].toUpperCase() + nameBetween.slice(1).toLowerCase();
 
           return (
             <input
               key={name}
               name={name}
-              placeholder={nameUpper}
+              placeholder={nameFormatted}
               value={arrayCurrent[index][name]}
               onChange={handleInputChange}
             />
