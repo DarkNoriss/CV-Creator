@@ -1,18 +1,24 @@
-import { FC } from 'react';
+import { useState } from 'react';
+import { Props } from '../interfaces/interfaces';
+import { useUpdateEffect } from '../utils/useUpdateEffect';
+import { addInput, createInput } from '../utils/createInput';
 
-export const PersonalInformation: FC = () => {
+export const PersonalInformation = ({ updateData }: Props) => {
+  const [info, setInfo] = useState<{ [key: string]: string }[]>([]);
+  const fieldNames = ['firstName', 'lastName', 'phoneNumber', 'email', 'address', 'github', 'desc'];
+
+  useUpdateEffect(() => {
+    addInput(info, setInfo, fieldNames);
+  }, []);
+
+  useUpdateEffect(() => {
+    updateData(info, 'personalInformation');
+  }, [info]);
+
   return (
-    <section>
+    <>
       <h3>Personal Information</h3>
-      <div>
-        <input name="firstName" placeholder="First name"></input>
-        <input name="lastName" placeholder="Last name"></input>
-        <input name="phoneNumber" placeholder="Phone number"></input>
-        <input name="email" placeholder="Email"></input>
-        <input name="address" placeholder="Address"></input>
-        <input name="github" placeholder="GitHub link"></input>
-        <textarea name="desc" placeholder="About me"></textarea>
-      </div>
-    </section>
+      <div>{info.map((_, index) => createInput(info, setInfo, fieldNames, index, false))}</div>
+    </>
   );
 };
