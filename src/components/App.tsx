@@ -3,19 +3,14 @@ import { Header } from './Header';
 import { SectionList } from './SectionList';
 import { Footer } from './Footer';
 import '../styles/app.scss';
-import { PersonalInformation } from './PersonalInformation';
-import { Experience } from './Experience';
-import { Education } from './Education';
 
 export const App: FC = (): JSX.Element => {
-  const [sections] = useState([<PersonalInformation />, <Experience />, <Education />]);
-
   return (
     <>
       <Header />
       <div className="app">
         <div className="section-list">
-          <SectionList sections={sections} />
+          <SectionList />
         </div>
         <div className="app-preview"></div>
       </div>
