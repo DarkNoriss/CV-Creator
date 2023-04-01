@@ -4,6 +4,7 @@ import { useUpdateEffect } from '../utils/useUpdateEffect';
 
 export const Experience = ({ updateData }: Props) => {
   const [exp, setExp] = useState<ExperienceTypes[]>(() => []);
+  const fieldNames = ['position', 'company', 'city', 'from', 'to'];
 
   useUpdateEffect(() => {
     updateData(exp, 'experience');
@@ -18,7 +19,12 @@ export const Experience = ({ updateData }: Props) => {
   };
 
   const addExp = () => {
-    setExp([...exp, { position: '', company: '', city: '', from: '', to: '' }]);
+    const fieldNamesInit = fieldNames.reduce(
+      (acc, fieldName) => ({ ...acc, [fieldName]: '' as string }),
+      {} as ExperienceTypes
+    );
+
+    setExp([...exp, fieldNamesInit]);
   };
 
   const removeExp = (index: number) => {
@@ -32,7 +38,7 @@ export const Experience = ({ updateData }: Props) => {
 
     return (
       <div key={index}>
-        {['position', 'company', 'city', 'from', 'to'].map((name) => (
+        {fieldNames.map((name) => (
           <input
             key={name}
             name={name}
