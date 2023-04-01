@@ -1,6 +1,6 @@
 import { ReactElement, useEffect, useRef } from 'react';
 
-export const useUpdateEffect = (callback: any, dependencies: ReactElement[]) => {
+export const useUpdateEffect = (callback: any, dependencies: any) => {
   const isMounted = useRef(false);
 
   useEffect(() => {
