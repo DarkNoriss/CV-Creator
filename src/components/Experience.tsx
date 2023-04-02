@@ -3,9 +3,10 @@ import { Props } from '../interfaces/interfaces';
 import { useUpdateEffect } from '../utils/useUpdateEffect';
 import { createInput, addInput } from '../utils/createInput';
 
+const fieldNames = ['position', 'company', 'city', 'from', 'to'];
+
 export const Experience = ({ updateData }: Props) => {
   const [exp, setExp] = useState<{ [key: string]: string }[]>([]);
-  const fieldNames = ['position', 'company', 'city', 'from', 'to'];
 
   useUpdateEffect(() => {
     updateData(exp, 'experience');

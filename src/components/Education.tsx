@@ -3,9 +3,10 @@ import { Props } from '../interfaces/interfaces';
 import { useUpdateEffect } from '../utils/useUpdateEffect';
 import { addInput, createInput } from '../utils/createInput';
 
+const fieldNames = ['universityName', 'city', 'degree', 'subject', 'from', 'to'];
+
 export const Education = ({ updateData }: Props) => {
   const [edu, setEdu] = useState<string[]>(() => []);
-  const fieldNames = ['universityName', 'city', 'degree', 'subject', 'from', 'to'];
 
   useUpdateEffect(() => {
     updateData(edu, 'education');
