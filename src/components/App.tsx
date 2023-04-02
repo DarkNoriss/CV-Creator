@@ -1,10 +1,10 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { Header } from './Header';
 import { SectionList } from './SectionList';
 import { Footer } from './Footer';
 import '../styles/app.scss';
 
-export const App: FC = (): JSX.Element => {
+export const App: FC = () => {
   return (
     <>
       <Header />
