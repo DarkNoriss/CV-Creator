@@ -3,6 +3,7 @@ import { useUpdateEffect } from '../utils/useUpdateEffect';
 
 type InputGroup = Record<string, string>;
 type InputSectionProps = {
+  test: { [key: string]: string };
   sectionName: string[];
   fieldData: string[][];
   updateGlobalState: (data: InputGroup[], from: string) => void;
@@ -14,7 +15,7 @@ type HandleInput = {
   value: string;
 };
 
-export const DynamicInputSection: React.FC<InputSectionProps> = ({ sectionName, fieldData, updateGlobalState, renderInit }) => {
+export const DynamicInputSection: React.FC<InputSectionProps> = ({ test, sectionName, fieldData, updateGlobalState, renderInit }) => {
   const [inputGroups, setInputGroups] = useState<InputGroup[]>(() => []);
   const [renderInitial] = useState<boolean>(() => renderInit);
   const [rendered, setRendered] = useState<boolean>(() => false);
@@ -25,6 +26,10 @@ export const DynamicInputSection: React.FC<InputSectionProps> = ({ sectionName, 
     updateGlobalState(inputGroups, sectionName[0]);
   }, [inputGroups]);
 
+  // const jndfjndjknhf = () => {
+  //   Object.values(test).map((name, index) => console.log(name, index));
+  // };
+  // jndfjndjknhf();
   const handleInputChange = ({ groupIndex, inputName, value }: HandleInput) => {
     setInputGroups((curGroups) => {
       const newGroups = [...curGroups];
@@ -45,6 +50,7 @@ export const DynamicInputSection: React.FC<InputSectionProps> = ({ sectionName, 
     addInputGroup();
   }
 
+  console.log(inputGroups);
   return (
     <section>
       <h3>{sectionName[1]}</h3>

@@ -2,20 +2,12 @@ import { useState } from 'react';
 import { PersonalInformation } from './PersonalInformation';
 import { Experience } from './Experience';
 import { Education } from './Education';
-import { useUpdateEffect } from '../utils/useUpdateEffect';
 
-export const SectionList = () => {
-  const [sectionsData, setSectionsData] = useState<string[]>(() => []);
+type SectionListProps = {
+  updateSectionsData: any;
+};
+export const SectionList = ({ updateSectionsData }: SectionListProps) => {
   const [sections] = useState([<PersonalInformation updateData={updateSectionsData} />, <Experience updateData={updateSectionsData} />, <Education updateData={updateSectionsData} />]);
-
-  function updateSectionsData(data: any, from: string) {
-    setSectionsData((prevSectionsData) => ({
-      ...prevSectionsData,
-      [from]: data,
-    }));
-  }
-
-  // useUpdateEffect(() => console.log(sectionsData), [sectionsData]);
 
   return (
     <>

@@ -9,12 +9,19 @@ const fieldData = [
   ['from', 'From'],
   ['to', 'To'],
 ];
-const renderInit = false;
+
+const test = {
+  position: 'Position',
+  company: 'Company',
+  city: 'City',
+  from: 'From',
+  to: 'To',
+};
 
 export const Experience = ({ updateData }: Props) => {
   return (
     <>
-      <DynamicInputSection sectionName={sectionName} fieldData={fieldData} updateGlobalState={(data, from) => updateData(data, from)} renderInit={renderInit} />
+      <DynamicInputSection test={test} sectionName={sectionName} fieldData={fieldData} updateGlobalState={(data, from) => updateData(data, from)} renderInit={false} />
     </>
   );
 };

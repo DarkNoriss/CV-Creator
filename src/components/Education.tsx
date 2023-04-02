@@ -10,12 +10,20 @@ const fieldData = [
   ['from', 'From'],
   ['to', 'To'],
 ];
-const renderInit = false;
+
+// CHANGE THIS ^ TO CONST
+const test: TestProps = {
+  position: 'Position',
+  company: 'Company',
+  city: 'City',
+  from: 'From',
+  to: 'To',
+};
 
 export const Education = ({ updateData }: Props) => {
   return (
     <>
-      <DynamicInputSection sectionName={sectionName} fieldData={fieldData} updateGlobalState={(data, from) => updateData(data, from)} renderInit={renderInit} />
+      <DynamicInputSection sectionName={sectionName} fieldData={fieldData} updateGlobalState={(data, from) => updateData(data, from)} renderInit={false} />
     </>
   );
 };

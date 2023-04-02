@@ -1,8 +1,21 @@
 import { useState } from 'react';
+import { useUpdateEffect } from '../utils/useUpdateEffect';
 import '../styles/displaypdf.scss';
 
-export const DisplayPdf = () => {
-  const [pdfData, setPdfData] = useState(() => 0);
+type DisplayPdfProps = {
+  sectionsData: string[];
+};
+export const DisplayPdf = ({ sectionsData }: DisplayPdfProps) => {
+  const [pdfData, setPdfData] = useState<string[]>(() => []);
+
+  useUpdateEffect(() => {
+    setPdfData(sectionsData);
+    // console.log(pdfData);
+  }, [sectionsData]);
+
+  const dataNotEmpty = () => pdfData.length > 0;
+
+  const test = (data: any) => console.log(data);
 
   return (
     <div className="pdf">
@@ -14,7 +27,7 @@ export const DisplayPdf = () => {
       <div className="pdf-header">
         <div className="hder-bg1"></div>
         <div className="hder-bar"></div>
-        <div className="hder-bg2"></div>
+        <div className="hder-bg2">{dataNotEmpty() && <p>XD</p>}</div>
       </div>
       <div className="pdf-main">
         <div className="main-bg1"></div>
