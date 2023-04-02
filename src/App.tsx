@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { Header } from './Header';
-import { SectionList } from './SectionList';
-import { Footer } from './Footer';
+import { Header } from './components/Header';
+import { SectionList } from './components/SectionList';
+import { Footer } from './components/Footer';
 import '../styles/app.scss';
 
 export const App: FC = () => {

@@ -6,11 +6,7 @@ import { useUpdateEffect } from '../utils/useUpdateEffect';
 
 export const SectionList = () => {
   const [sectionsData, setSectionsData] = useState<string[]>(() => []);
-  const [sections] = useState([
-    <PersonalInformation updateData={updateSectionsData} />,
-    <Experience updateData={updateSectionsData} />,
-    <Education updateData={updateSectionsData} />,
-  ]);
+  const [sections] = useState([<PersonalInformation updateData={updateSectionsData} />, <Experience updateData={updateSectionsData} />, <Education updateData={updateSectionsData} />]);
 
   function updateSectionsData(data: any, from: string) {
     setSectionsData((prevSectionsData) => ({

@@ -16,12 +16,7 @@ const renderInit = true;
 export const PersonalInformation = ({ updateData }: Props) => {
   return (
     <>
-      <DynamicInputSection
-        sectionName={sectionName}
-        fieldData={fieldData}
-        updateGlobalState={(data, from) => updateData(data, from)}
-        renderInit={renderInit}
-      />
+      <DynamicInputSection sectionName={sectionName} fieldData={fieldData} updateGlobalState={(data, from) => updateData(data, from)} renderInit={renderInit} />
     </>
   );
 };
