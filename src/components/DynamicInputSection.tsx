@@ -3,9 +3,8 @@ import { useUpdateEffect } from '../utils/useUpdateEffect';
 
 type InputGroup = Record<string, string>;
 type InputSectionProps = {
-  test: { [key: string]: string };
   sectionName: string[];
-  fieldData: string[][];
+  fieldData: FieldData;
   updateGlobalState: (data: InputGroup[], from: string) => void;
   renderInit: boolean;
 };
@@ -14,22 +13,19 @@ type HandleInput = {
   inputName: string;
   value: string;
 };
+type FieldData = {
+  [key: string]: string;
+};
 
-export const DynamicInputSection: React.FC<InputSectionProps> = ({ test, sectionName, fieldData, updateGlobalState, renderInit }) => {
+export const DynamicInputSection: React.FC<InputSectionProps> = ({ sectionName, fieldData, updateGlobalState, renderInit }) => {
   const [inputGroups, setInputGroups] = useState<InputGroup[]>(() => []);
   const [renderInitial] = useState<boolean>(() => renderInit);
   const [rendered, setRendered] = useState<boolean>(() => false);
-  const fieldNames = fieldData.map((value) => value[0]);
-  const placeholders = fieldData.map((value) => value[1]);
 
   useUpdateEffect(() => {
     updateGlobalState(inputGroups, sectionName[0]);
   }, [inputGroups]);
 
-  // const jndfjndjknhf = () => {
-  //   Object.values(test).map((name, index) => console.log(name, index));
-  // };
-  // jndfjndjknhf();
   const handleInputChange = ({ groupIndex, inputName, value }: HandleInput) => {
     setInputGroups((curGroups) => {
       const newGroups = [...curGroups];
@@ -39,9 +35,9 @@ export const DynamicInputSection: React.FC<InputSectionProps> = ({ test, section
     });
   };
 
-  const addInputGroup = () => setInputGroups((curGroups) => [...curGroups, createGroup(fieldNames)]);
+  const addInputGroup = () => setInputGroups((curGroups) => [...curGroups, createGroup(fieldData)]);
 
-  const createGroup = (fieldNames: string[]) => fieldNames.reduce((acc, cur) => ({ ...acc, [cur]: '' }), {});
+  const createGroup = (fieldNames: FieldData) => Object.keys(fieldNames).reduce((acc, cur) => ({ ...acc, [cur]: '' }), {});
 
   const removeInputGroup = (index: number) => setInputGroups((curGroups) => curGroups.filter((_, i) => i !== index));
 
@@ -50,14 +46,13 @@ export const DynamicInputSection: React.FC<InputSectionProps> = ({ test, section
     addInputGroup();
   }
 
-  console.log(inputGroups);
   return (
     <section>
       <h3>{sectionName[1]}</h3>
       {inputGroups.map((group, groupIndex) => (
         <div key={groupIndex}>
           {Object.entries(group).map(([name, value], index) => (
-            <input key={index} name={name} placeholder={placeholders[index]} value={value} onChange={(e) => handleInputChange({ groupIndex, inputName: name, value: e.target.value })} />
+            <input key={index} name={name} placeholder={fieldData[name]} value={value} onChange={(e) => handleInputChange({ groupIndex, inputName: name, value: e.target.value })} />
           ))}
           {!renderInitial && <button onClick={() => removeInputGroup(groupIndex)}>Delete</button>}
         </div>

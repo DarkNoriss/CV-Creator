@@ -2,17 +2,7 @@ import { Props } from '../interfaces/interfaces';
 import { DynamicInputSection } from './DynamicInputSection';
 
 const sectionName = ['education', 'Education'];
-const fieldData = [
-  ['universityName', 'University name'],
-  ['city', 'City'],
-  ['degree', 'Degree'],
-  ['subject', 'Subject'],
-  ['from', 'From'],
-  ['to', 'To'],
-];
-
-// CHANGE THIS ^ TO CONST
-const test: TestProps = {
+const fieldData = {
   position: 'Position',
   company: 'Company',
   city: 'City',

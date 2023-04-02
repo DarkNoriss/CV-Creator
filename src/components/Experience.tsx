@@ -2,15 +2,7 @@ import { Props } from '../interfaces/interfaces';
 import { DynamicInputSection } from './DynamicInputSection';
 
 const sectionName = ['experience', 'Experience'];
-const fieldData = [
-  ['position', 'Position'],
-  ['company', 'Company'],
-  ['city', 'City'],
-  ['from', 'From'],
-  ['to', 'To'],
-];
-
-const test = {
+const fieldData = {
   position: 'Position',
   company: 'Company',
   city: 'City',
@@ -21,7 +13,7 @@ const test = {
 export const Experience = ({ updateData }: Props) => {
   return (
     <>
-      <DynamicInputSection test={test} sectionName={sectionName} fieldData={fieldData} updateGlobalState={(data, from) => updateData(data, from)} renderInit={false} />
+      <DynamicInputSection sectionName={sectionName} fieldData={fieldData} updateGlobalState={(data, from) => updateData(data, from)} renderInit={false} />
     </>
   );
 };
