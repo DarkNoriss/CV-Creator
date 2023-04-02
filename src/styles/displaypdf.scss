@@ -1,0 +1,72 @@
+$margin-size: 46px;
+$header-height: 256px;
+$bar-width: 286px;
+$bgcolor: white;
+$header-bgcolor: #a2d6bd;
+$bar-bgcolor: #7c7461;
+
+.pdf {
+  min-width: 793.7px;
+  height: 1122.51px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+  &-background {
+    height: calc($margin-size * 1.35);
+    display: flex;
+
+    & > .bg {
+      &-bg1 {
+        width: $margin-size;
+        background-color: $bgcolor;
+      }
+      &-bar {
+        width: $bar-width;
+        background-color: $bar-bgcolor;
+      }
+      &-bg2 {
+        flex: 1;
+        background-color: $bgcolor;
+      }
+    }
+  }
+  &-header {
+    height: $header-height;
+    display: flex;
+
+    & > .hder {
+      &-bg1 {
+        width: $margin-size;
+        background-color: $header-bgcolor;
+      }
+      &-bar {
+        width: $bar-width;
+        background-color: $bar-bgcolor;
+      }
+      &-bg2 {
+        flex: 1;
+        background-color: $header-bgcolor;
+      }
+    }
+  }
+  &-main {
+    flex: 1;
+    display: flex;
+
+    & > .main {
+      &-bg1 {
+        width: $margin-size;
+        background-color: $bgcolor;
+      }
+      &-bar {
+        width: $bar-width;
+        background-color: $bar-bgcolor;
+      }
+      &-bg2 {
+        flex: 1;
+        background-color: $bgcolor;
+      }
+    }
+  }
+}
