@@ -19,7 +19,7 @@ export const SectionList = () => {
     }));
   }
 
-  useUpdateEffect(() => console.log(sectionsData), [sectionsData]);
+  // useUpdateEffect(() => console.log(sectionsData), [sectionsData]);
 
   return (
     <>
