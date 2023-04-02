@@ -1,29 +1,29 @@
 import React, { useState } from 'react';
 import { useUpdateEffect } from '../utils/useUpdateEffect';
 
+type FieldData = Record<string, string>;
 type InputGroup = Record<string, string>;
+
 type InputSectionProps = {
-  sectionName: string[];
+  sectionName: string;
+  sectionLabel: string;
   fieldData: FieldData;
   updateGlobalState: (data: InputGroup[], from: string) => void;
-  renderInit: boolean;
+  renderInitialGroup: boolean;
 };
+
 type HandleInput = {
   groupIndex: number;
   inputName: string;
   value: string;
 };
-type FieldData = {
-  [key: string]: string;
-};
 
-export const DynamicInputSection: React.FC<InputSectionProps> = ({ sectionName, fieldData, updateGlobalState, renderInit }) => {
-  const [inputGroups, setInputGroups] = useState<InputGroup[]>(() => []);
-  const [renderInitial] = useState<boolean>(() => renderInit);
-  const [rendered, setRendered] = useState<boolean>(() => false);
+export const DynamicInputSection: React.FC<InputSectionProps> = ({ sectionName, sectionLabel, fieldData, updateGlobalState, renderInitialGroup }) => {
+  const [inputGroups, setInputGroups] = useState<InputGroup[]>(() => (renderInitialGroup ? [createGroup(fieldData)] : []));
+  const limitToOnlyOneGroup = renderInitialGroup;
 
   useUpdateEffect(() => {
-    updateGlobalState(inputGroups, sectionName[0]);
+    updateGlobalState(inputGroups, sectionLabel);
   }, [inputGroups]);
 
   const handleInputChange = ({ groupIndex, inputName, value }: HandleInput) => {
@@ -36,28 +36,23 @@ export const DynamicInputSection: React.FC<InputSectionProps> = ({ sectionName, 
   };
 
   const addInputGroup = () => setInputGroups((curGroups) => [...curGroups, createGroup(fieldData)]);
-
-  const createGroup = (fieldNames: FieldData) => Object.keys(fieldNames).reduce((acc, cur) => ({ ...acc, [cur]: '' }), {});
-
   const removeInputGroup = (index: number) => setInputGroups((curGroups) => curGroups.filter((_, i) => i !== index));
-
-  if (renderInitial && !rendered) {
-    setRendered(true);
-    addInputGroup();
-  }
 
   return (
     <section>
-      <h3>{sectionName[1]}</h3>
+      <h3>{sectionName}</h3>
       {inputGroups.map((group, groupIndex) => (
         <div key={groupIndex}>
-          {Object.entries(group).map(([name, value], index) => (
-            <input key={index} name={name} placeholder={fieldData[name]} value={value} onChange={(e) => handleInputChange({ groupIndex, inputName: name, value: e.target.value })} />
-          ))}
-          {!renderInitial && <button onClick={() => removeInputGroup(groupIndex)}>Delete</button>}
+          {Object.entries(group).map(([name, value], index) => {
+            const label = fieldData[name];
+            return <input key={index} name={name} placeholder={label} value={value} onChange={(e) => handleInputChange({ groupIndex, inputName: name, value: e.target.value })} />;
+          })}
+          {!limitToOnlyOneGroup && <button onClick={() => removeInputGroup(groupIndex)}>Delete</button>}
         </div>
       ))}
-      {!renderInitial && <button onClick={addInputGroup}>Add</button>}
+      {!limitToOnlyOneGroup && <button onClick={addInputGroup}>Add</button>}
     </section>
   );
 };
+
+const createGroup = (fieldNames: FieldData) => Object.keys(fieldNames).reduce<InputGroup>((acc, cur) => ({ ...acc, [cur]: '' }), {});
