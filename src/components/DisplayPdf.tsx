@@ -4,9 +4,9 @@ type DisplayPdfProps = {
   sectionsData: string[];
 };
 
-//ASK KUBEN ABOUT THIS SHIT
+//ASK KUBEN ABOUT THIS ANY SHIT AAAAAAA
 export const DisplayPdf = ({ sectionsData }: DisplayPdfProps) => {
-  const { personalInformation, experience, education } = sectionsData;
+  const { personalInformation, experience, education }: any = sectionsData;
 
   console.log(personalInformation);
   return (
