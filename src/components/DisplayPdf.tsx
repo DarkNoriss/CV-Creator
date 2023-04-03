@@ -1,22 +1,14 @@
-import { useState } from 'react';
-import { useUpdateEffect } from '../utils/useUpdateEffect';
 import '../styles/displaypdf.scss';
 
 type DisplayPdfProps = {
   sectionsData: string[];
 };
+
+//ASK KUBEN ABOUT THIS SHIT
 export const DisplayPdf = ({ sectionsData }: DisplayPdfProps) => {
-  const [pdfData, setPdfData] = useState<string[]>(() => []);
+  const { personalInformation, experience, education } = sectionsData;
 
-  useUpdateEffect(() => {
-    setPdfData(sectionsData);
-    // console.log(pdfData);
-  }, [sectionsData]);
-
-  const dataNotEmpty = () => pdfData.length > 0;
-
-  const test = (data: any) => console.log(data);
-
+  console.log(personalInformation);
   return (
     <div className="pdf">
       <div className="pdf-background">
@@ -27,13 +19,24 @@ export const DisplayPdf = ({ sectionsData }: DisplayPdfProps) => {
       <div className="pdf-header">
         <div className="hder-bg1"></div>
         <div className="hder-bar"></div>
-        <div className="hder-bg2">{dataNotEmpty() && <p>XD</p>}</div>
+        <div className="hder-bg2">
+          <p>{personalInformation?.[0]?.firstName}</p>
+          <p>{personalInformation?.[0]?.lastName}</p>
+        </div>
       </div>
       <div className="pdf-main">
         <div className="main-bg1"></div>
         <div className="main-bar"></div>
-        <div className="main-bg2"></div>
+        <div className="main-bg2">
+          <div className="exp">{experience?.[0] && <p className="head">Experience</p>}</div>
+          <div className="edu">{education?.[0] && <p className="head">Education</p>}</div>
+        </div>
       </div>
     </div>
   );
 };
+
+// {dataNotEmpty() && <p>XD</p>}
+// education
+// experience
+// personalInformation

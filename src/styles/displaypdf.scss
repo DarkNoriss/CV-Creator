@@ -4,6 +4,8 @@ $bar-width: 286px;
 $bgcolor: white;
 $header-bgcolor: #a2d6bd;
 $bar-bgcolor: #7c7461;
+$name-size: 3rem;
+$header-size: 1.5rem;
 
 .pdf {
   min-width: 793.7px;
@@ -47,6 +49,15 @@ $bar-bgcolor: #7c7461;
       &-bg2 {
         flex: 1;
         background-color: $header-bgcolor;
+        padding-top: calc($header-height / 2 - 55px / 2);
+        padding-left: calc($header-height / 8);
+
+        & > p {
+          height: calc($name-size);
+          margin: 0;
+          font-size: $name-size;
+          font-weight: bold;
+        }
       }
     }
   }
@@ -66,6 +77,18 @@ $bar-bgcolor: #7c7461;
       &-bg2 {
         flex: 1;
         background-color: $bgcolor;
+        padding: calc($header-height / 8);
+
+        & .exp,
+        .edu {
+          height: calc($name-size);
+          text-align: center;
+          & > .head {
+            margin: 0;
+            font-size: $header-size;
+            font-weight: bold;
+          }
+        }
       }
     }
   }
