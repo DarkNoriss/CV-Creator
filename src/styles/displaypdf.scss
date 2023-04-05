@@ -1,95 +1,93 @@
-$margin-size: 46px;
-$header-height: 256px;
-$bar-width: 286px;
+@import '../styles/variable.scss';
+
 $bgcolor: white;
+
+$m-left: 46px;
+$m-top: calc($m-left * 1.35);
+
+$header-height: 256px;
 $header-bgcolor: #a2d6bd;
+
+$bar-width: 286px;
 $bar-bgcolor: #7c7461;
-$name-size: 3rem;
+$bar-p: 20px;
+
+$name-size: 2.5rem;
 $header-size: 1.5rem;
 
+$padding: 10px;
+$img-size: calc($header-height - $padding);
+
 .pdf {
-  min-width: 793.7px;
-  height: 1122.51px;
+  height: $a4-height;
+  min-width: $a4-width;
+  position: relative;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: $box-shadow;
+  background-color: $bgcolor;
+  letter-spacing: 1px;
 
-  &-background {
-    height: calc($margin-size * 1.35);
-    display: flex;
+  &-bar {
+    height: 100%;
+    box-sizing: border-box;
+    position: absolute;
+    margin-left: $m-left;
+    padding: 0 $bar-p;
+    padding-top: $m-top;
+    width: $bar-width;
+    background-color: $bar-bgcolor;
+    color: white;
 
-    & > .bg {
-      &-bg1 {
-        width: $margin-size;
-        background-color: $bgcolor;
+    & > img {
+      height: $img-size;
+      aspect-ratio: 1/1;
+      margin: calc($padding / 2) auto;
+      display: table;
+      border: 1px solid white;
+      border-radius: 50%;
+    }
+
+    & > .desc {
+      padding: $padding;
+      padding-top: calc($padding * 4);
+      border-bottom: 2px solid white;
+
+      & > p {
+        margin-left: $padding;
+        overflow-wrap: break-word;
       }
-      &-bar {
-        width: $bar-width;
-        background-color: $bar-bgcolor;
-      }
-      &-bg2 {
-        flex: 1;
-        background-color: $bgcolor;
+    }
+
+    & > .contact {
+      padding: $padding;
+
+      & > p {
+        margin-left: $padding;
       }
     }
   }
+
   &-header {
     height: $header-height;
-    display: flex;
+    margin-top: calc($m-left * 1.35);
+    width: 100%;
+    background-color: $header-bgcolor;
 
-    & > .hder {
-      &-bg1 {
-        width: $margin-size;
-        background-color: $header-bgcolor;
-      }
-      &-bar {
-        width: $bar-width;
-        background-color: $bar-bgcolor;
-      }
-      &-bg2 {
-        flex: 1;
-        background-color: $header-bgcolor;
-        padding-top: calc($header-height / 2 - 55px / 2);
-        padding-left: calc($header-height / 8);
+    &-text {
+      margin-top: calc($header-height / 3);
+      margin-left: calc($m-left + $bar-width + 40px);
+      font-size: $name-size;
+      font-weight: bold;
 
-        & > p {
-          height: calc($name-size);
-          margin: 0;
-          font-size: $name-size;
-          font-weight: bold;
-        }
+      & > p {
+        margin: 0;
       }
     }
   }
-  &-main {
+
+  &-text {
     flex: 1;
-    display: flex;
-
-    & > .main {
-      &-bg1 {
-        width: $margin-size;
-        background-color: $bgcolor;
-      }
-      &-bar {
-        width: $bar-width;
-        background-color: $bar-bgcolor;
-      }
-      &-bg2 {
-        flex: 1;
-        background-color: $bgcolor;
-        padding: calc($header-height / 8);
-
-        & .exp,
-        .edu {
-          height: calc($name-size);
-          text-align: center;
-          & > .head {
-            margin: 0;
-            font-size: $header-size;
-            font-weight: bold;
-          }
-        }
-      }
-    }
+    margin-left: calc($m-left + $bar-width);
   }
 }
