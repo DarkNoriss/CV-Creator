@@ -21,12 +21,14 @@ $img-size: calc($header-height - $padding);
 .pdf {
   height: $a4-height;
   min-width: $a4-width;
+  max-width: $a4-width;
   position: relative;
   display: flex;
   flex-direction: column;
   box-shadow: $box-shadow;
   background-color: $bgcolor;
   letter-spacing: 1px;
+  overflow-wrap: break-word;
 
   &-bar {
     height: 100%;
@@ -55,7 +57,6 @@ $img-size: calc($header-height - $padding);
 
       & > p {
         margin-left: $padding;
-        overflow-wrap: break-word;
       }
     }
 
@@ -89,5 +90,27 @@ $img-size: calc($header-height - $padding);
   &-text {
     flex: 1;
     margin-left: calc($m-left + $bar-width);
+
+    & p {
+      margin: 0;
+      margin-bottom: 15px;
+    }
+
+    & > .pdf-exp {
+      margin-left: $m-left;
+
+      & .from-to {
+        display: flex;
+        flex-direction: row;
+
+        & > p {
+          flex: 1;
+        }
+      }
+
+      & > h3 {
+        margin-left: calc($m-left/2);
+      }
+    }
   }
 }
