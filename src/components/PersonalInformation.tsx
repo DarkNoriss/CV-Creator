@@ -11,10 +11,26 @@ const fieldData = {
   desc: 'Description',
 };
 
+export type PersonalInformationProps = {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  email: string;
+  address: string;
+  github: string;
+  desc: string;
+};
+
 export const PersonalInformation = ({ updateData }: Props) => {
   return (
     <>
-      <DynamicInputSection sectionName={'Personal Information'} sectionLabel={'personalInformation'} fieldData={fieldData} updateGlobalState={(data, from) => updateData(data, from)} renderInitialGroup={true} />
+      <DynamicInputSection
+        sectionName={'Personal Information'}
+        sectionLabel={'personalInformation'}
+        fieldData={fieldData}
+        updateGlobalState={(data, from) => updateData(data, from)}
+        renderInitialGroup={true}
+      />
     </>
   );
 };

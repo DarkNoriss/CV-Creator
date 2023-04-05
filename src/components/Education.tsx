@@ -9,10 +9,24 @@ const fieldData = {
   to: 'To',
 };
 
+export type EducationProps = {
+  position: string;
+  company: string;
+  city: string;
+  from: string;
+  to: string;
+};
+
 export const Education = ({ updateData }: Props) => {
   return (
     <>
-      <DynamicInputSection sectionName={'Education'} sectionLabel={'education'} fieldData={fieldData} updateGlobalState={(data, from) => updateData(data, from)} renderInitialGroup={false} />
+      <DynamicInputSection
+        sectionName={'Education'}
+        sectionLabel={'education'}
+        fieldData={fieldData}
+        updateGlobalState={(data, from) => updateData(data, from)}
+        renderInitialGroup={false}
+      />
     </>
   );
 };

@@ -4,7 +4,15 @@ import { SectionList } from './components/SectionList';
 import { DisplayPdf } from './components/DisplayPdf';
 import { Footer } from './components/Footer';
 import './styles/app.scss';
+import { ExperienceProps } from './components/Experience';
+import { EducationProps } from './components/Education';
+import { PersonalInformationProps } from './components/PersonalInformation';
 
+export type SectionsProps = {
+  personalInformation: PersonalInformationProps[];
+  experience: ExperienceProps[];
+  education: EducationProps[];
+};
 export const App: FC = () => {
   const [sectionsData, setSectionsData] = useState<string[]>(() => []);
 

@@ -7,7 +7,11 @@ type SectionListProps = {
   updateSectionsData: any;
 };
 export const SectionList = ({ updateSectionsData }: SectionListProps) => {
-  const [sections] = useState([<PersonalInformation updateData={updateSectionsData} />, <Experience updateData={updateSectionsData} />, <Education updateData={updateSectionsData} />]);
+  const [sections] = useState([
+    <PersonalInformation updateData={updateSectionsData} />,
+    <Experience updateData={updateSectionsData} />,
+    <Education updateData={updateSectionsData} />,
+  ]);
 
   return (
     <>
