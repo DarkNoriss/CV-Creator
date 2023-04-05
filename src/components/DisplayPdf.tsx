@@ -10,16 +10,17 @@ export const DisplayPdf = ({ sectionsData }: DisplayPdfProps) => {
 
   const getInfo = (label: string) => {
     const section = personalInformation.find((info: any) => info[label]);
-    const info = section ? section[label] : '';
-    return info;
+    return section ? section[label] : '';
   };
 
   const getExp = (label: string) => {
-    return experience[label];
+    const section = experience.find((info: any) => info[label]);
+    return section ? section[label] : '';
   };
 
   const getEdu = (label: string) => {
-    return education[label];
+    const section = education.find((info: any) => info[label]);
+    return section ? section[label] : '';
   };
 
   return (
