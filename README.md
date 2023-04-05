@@ -2,4 +2,4 @@
 
 my first app using TypeScript + React + SCSS
 
-DEMO
+<a href = "https://darknoriss.github.io/CV-Creator/"/> DEMO </a>
