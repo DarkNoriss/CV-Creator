@@ -107,10 +107,22 @@ $img-size: calc($header-height - $padding);
           flex: 1;
         }
       }
+    }
 
-      & > h3 {
-        margin-left: calc($m-left/2);
+    & > .pdf-edu {
+      margin-left: $m-left;
+
+      & .from-to {
+        display: flex;
+        flex-direction: row;
+
+        & > p {
+          flex: 1;
+        }
       }
+    }
+    & h3 {
+      margin-left: calc($m-left/2);
     }
   }
 }

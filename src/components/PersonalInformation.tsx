@@ -19,6 +19,7 @@ export type PersonalInformationProps = {
   address: string;
   github: string;
   desc: string;
+  [key: string]: string;
 };
 
 export const PersonalInformation = ({ updateData }: Props) => {

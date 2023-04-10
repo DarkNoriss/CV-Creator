@@ -2,17 +2,19 @@ import { Props } from '../interfaces/interfaces';
 import { DynamicInputSection } from './DynamicInputSection';
 
 const fieldData = {
-  position: 'Position',
-  company: 'Company',
+  universityName: 'University Name',
   city: 'City',
+  degree: 'Degree',
+  subject: 'Subject',
   from: 'From',
   to: 'To',
 };
 
 export type EducationProps = {
-  position: string;
-  company: string;
+  universityName: string;
   city: string;
+  degree: string;
+  subject: string;
   from: string;
   to: string;
 };

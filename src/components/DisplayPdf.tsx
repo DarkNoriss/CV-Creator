@@ -1,6 +1,7 @@
 import { SectionsProps } from '../App';
 import '../styles/displaypdf.scss';
 import { EducationProps } from './Education';
+import { ExperienceProps } from './Experience';
 
 type DisplayPdfProps = {
   sectionsData: SectionsProps;
@@ -16,10 +17,10 @@ export const DisplayPdf = ({ sectionsData }: DisplayPdfProps) => {
   };
 
   const isContact = () => {
-    if (personalInformation?.[0].phoneNumber) return true;
-    if (personalInformation?.[0].email) return true;
-    if (personalInformation?.[0].address) return true;
-    if (personalInformation?.[0].github) return true;
+    if (personalInformation?.[0]?.phoneNumber) return true;
+    if (personalInformation?.[0]?.email) return true;
+    if (personalInformation?.[0]?.address) return true;
+    if (personalInformation?.[0]?.github) return true;
   };
 
   return (
@@ -52,7 +53,7 @@ export const DisplayPdf = ({ sectionsData }: DisplayPdfProps) => {
         {experience?.[0] && (
           <div className="pdf-exp">
             <h3>Experience</h3>
-            {experience.map((group: EducationProps, groupIndex: number) => (
+            {experience.map((group: ExperienceProps, groupIndex: number) => (
               <div key={groupIndex}>
                 <p>{group.company}</p>
                 <p>{group.position}</p>
@@ -70,6 +71,19 @@ export const DisplayPdf = ({ sectionsData }: DisplayPdfProps) => {
         {education?.[0] && (
           <div className="pdf-edu">
             <h3>Education</h3>
+            {education.map((group: EducationProps, groupIndex: number) => (
+              <div key={groupIndex}>
+                <p>{group.universityName}</p>
+                <p>{group.subject}</p>
+                <p>{group.degree}</p>
+                <div className="from-to">
+                  <p>{group.city}</p>
+                  <p>
+                    {group.from} - {group.to}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         )}
       </div>
