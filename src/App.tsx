@@ -14,7 +14,11 @@ export type SectionsProps = {
   education: EducationProps[];
 };
 export const App: FC = () => {
-  const [sectionsData, setSectionsData] = useState<string[]>(() => []);
+  const [sectionsData, setSectionsData] = useState<SectionsProps>({
+    personalInformation: [],
+    experience: [],
+    education: [],
+  });
 
   const updateSectionsData = (data: string, from: string) => {
     setSectionsData((prevSectionsData) => ({
